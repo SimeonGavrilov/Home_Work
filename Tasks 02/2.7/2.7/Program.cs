@@ -10,18 +10,16 @@ namespace _2._7
     {
         public static void Main(string[] args)
         {
-            Round Round = new Round(5, 5, 10);
-            Rectangle Rec = new Rectangle(2, 2, 3, 4);
-            Line Line = new Line(4, 4, 6, 6);
-            Circle Circle = new Circle(25, 25, 10);
-            Ring Ring = new Ring(10, 10, 20, 4, 5);
-
-            Round.Print();
-            Ring.Print();
-            Console.ReadKey();
+            //Ring ring = new Ring(5,5,20,10,15);
+            //Console.WriteLine(ring.Diametr);
+            //ring.Inner_Ring = -1;
+            //Console.WriteLine(ring.Inner_Ring);
+            //Circle circ = new Circle(5,5,6);
+            //Console.WriteLine(circ.Circumference);
             //Rec.Print();
             //Line.Print();
             //Circle.Print();
+            Console.ReadKey();
 
         }
     }
@@ -39,7 +37,16 @@ namespace _2._7
     }
     public class Round : Figure //Реализация класса круга, унаследован от Фигуры
     {
-        protected virtual double _Diametr { get; set; } //Из нового - диаметр круга и он виртуальный т.к. пригодится в классе Ring
+        private double _Diametr { get; set; }
+        public virtual double Diametr  //Из нового - диаметр круга и он виртуальный т.к. пригодится в классе Ring
+        {
+            get { return _Diametr; }
+            set
+            {
+                if (Diametr > 0) _Diametr = Diametr;
+                else throw new ArgumentOutOfRangeException("Число должно быть больше нуля!");
+            }
+        }
         protected override int _x { get; set; }
         protected override int _y { get; set; }
         public Round(int X, int Y, double Diametr)
@@ -57,15 +64,32 @@ namespace _2._7
     public sealed class Ring : Round //Класс кольца унаследован от круга.
     {
         private double _Inner_Ring { get; set; } //Внутреннее кольцо
-        private double _Outer_Ring { get; set; } //Внешнее кольцо
-        protected override double _Diametr { get; set; }
+        public double Inner_Ring
+        {
+            get { return _Inner_Ring; }
+            set
+            {
+                if ((value < 1) | (_Inner_Ring > _Outer_Ring)) throw new ArgumentOutOfRangeException("Внутреннее кольцо не может быть больше внешнего или быть больше диаметра!");
+                else _Inner_Ring = value;
+            }
+        }
+        private double _Outer_Ring { get; set; } //Внешнее кольцо (Внешнее кольцо должно быть равно диаметру?)
+        public double Outer_Ring
+        {
+            get { return _Outer_Ring; }
+            set
+            {
+                if ((value < 1) | (_Outer_Ring < _Inner_Ring)) throw new ArgumentOutOfRangeException("Внутреннее кольцо не может быть больше внешнего или быть больше диаметра!");
+                else _Outer_Ring = value;
+            }
+        }
+        private double _Diametr { get; set; }
         protected override int _x { get; set; }
         protected override int _y { get; set; }
         public Ring(int X, int Y, double Diametr, double Inner_Ring, double Outer_Ring)
             : base(X, Y, Diametr)
         {
             if (Inner_Ring > Diametr | Outer_Ring > Diametr | Inner_Ring > Outer_Ring) throw new ArgumentOutOfRangeException("Кольцо не имеет право на существование!");
-            else ;
 
             if (Inner_Ring > Outer_Ring | Inner_Ring > Diametr) throw new ArgumentOutOfRangeException("Внутреннее кольцо не может быть больше внешнего или быть больше диаметра!");
             else _Inner_Ring = Inner_Ring;
@@ -85,10 +109,20 @@ namespace _2._7
         protected override int _x { get; set; }
         protected override int _y { get; set; }
         private double _Circumference { get; set; } //длина окружности
+        public double Circumference
+        {
+            get { return _Circumference; }
+            set
+            {
+                if (value <= 0) throw new ArgumentOutOfRangeException("Длина окружности не может быть меньше единицы!");
+                else _Circumference = value;
+            }
+        }
         public Circle(int X, int Y, double Circumference)
             : base(X, Y)
         {
-            _Circumference = Circumference;
+            if (Circumference < 1) throw new ArgumentOutOfRangeException("Длина окружности не может быть меньше единицы!");
+            else _Circumference = Circumference;
         }
         public override void Print()
         {
@@ -100,7 +134,25 @@ namespace _2._7
         protected override int _x { get; set; }
         protected override int _y { get; set; }
         private int _Width { get; set; }
+        public int Width
+        {
+            get { return _Width; }
+            set
+            {
+                if (value <= 0) throw new ArgumentOutOfRangeException("Внутреннее кольцо не может быть больше внешнего или быть больше диаметра!");
+                else _Width = value;
+            }
+        }
         private int _Height { get; set; }
+        public int Height
+        {
+            get { return _Height; }
+            set
+            {
+                if (value <= 0) throw new ArgumentOutOfRangeException("Внутреннее кольцо не может быть больше внешнего или быть больше диаметра!");
+                else _Height = value;
+            }
+        }
         public Rectangle(int X, int Y, int Width, int Height)
             : base(X, Y)
         {
