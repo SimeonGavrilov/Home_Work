@@ -1,0 +1,6 @@
+c:\users\fennec\documents\visual studio 2012\Projects\2.8\2.8\bin\Debug\2.8.exe.config
+C:\Users\Fennec\Documents\Visual Studio 2012\Projects\2.8\2.8\bin\Debug\2.8.exe
+C:\Users\Fennec\Documents\Visual Studio 2012\Projects\2.8\2.8\bin\Debug\2.8.pdb
+C:\Users\Fennec\Documents\Visual Studio 2012\Projects\2.8\2.8\obj\Debug\2.8.exe
+C:\Users\Fennec\Documents\Visual Studio 2012\Projects\2.8\2.8\obj\Debug\2.8.pdb
+C:\Users\Fennec\documents\visual studio 2012\Projects\2.8\2.8\obj\Debug\2.8.csprojResolveAssemblyReference.cache
