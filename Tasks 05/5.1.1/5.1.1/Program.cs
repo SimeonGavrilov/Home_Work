@@ -180,7 +180,9 @@ namespace _5._1._1
             {
                 string fileName = System.IO.Path.GetFileName(item);
                 string destFile = System.IO.Path.Combine(Path, fileName);
-                System.IO.File.Copy(item, destFile, true); ;//копируем
+                System.IO.File.Copy(item, destFile, true); ;// Тут присутствует проблема, что при копировании больших файлов - время увеличивается согласно кол-ву вариантов, которые
+                //меньше заданного времени отката. В случае с небольшими файлами проблема не заметна, но при больших всё печально. Пока не могу решить как выбрать нужный файл более правильно,
+                //посему просто разрешил перезапись файлов.
             }
         }
     }
