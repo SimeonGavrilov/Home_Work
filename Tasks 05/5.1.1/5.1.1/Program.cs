@@ -56,33 +56,33 @@ namespace _5._1._1
         }
     }
 
-    class Searcher//модуль отследования изменений в файле
-    {
-        FileSystemWatcher fsw;
-        public Searcher(string path)
-        {
-            fsw = new FileSystemWatcher(path);
-            fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-        }
-        public void Run()
-        {
-            fsw.EnableRaisingEvents = true;
-        }
-        void fsw_Changed(object sender, FileSystemEventArgs e)
-        {
-            try
-            {
-                Console.WriteLine("Файл изменен!");
-                fsw.EnableRaisingEvents = false; //отключаем слежение
-            }
+    //class Searcher//модуль отследования изменений в файле
+    //{
+    //    FileSystemWatcher fsw;
+    //    public Searcher(string path)
+    //    {
+    //        fsw = new FileSystemWatcher(path);
+    //        fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+    //    }
+    //    public void Run()
+    //    {
+    //        fsw.EnableRaisingEvents = true;
+    //    }
+    //    void fsw_Changed(object sender, FileSystemEventArgs e)
+    //    {
+    //        try
+    //        {
+    //            Console.WriteLine("Файл изменен!");
+    //            fsw.EnableRaisingEvents = false; //отключаем слежение
+    //        }
 
 
-            finally
-            {
-                fsw.EnableRaisingEvents = true; //переподключаем слежение
-            }
-        }
-    }
+    //        finally
+    //        {
+    //            fsw.EnableRaisingEvents = true; //переподключаем слежение
+    //        }
+    //    }
+    //}
     public class DoBackUp
     {
         TimeSpan ts = new TimeSpan(0, 0, 30); //автосев каждые 30 секунд.
