@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Awards.Entities\Awards.Entities.csproj" />
+    <ProjectReference Include="..\User.Common\User.Common.csproj" />
+    <ProjectReference Include="..\User.DAL\Users.DAL.csproj" />
+    <ProjectReference Include="..\User.Entities\Users.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
