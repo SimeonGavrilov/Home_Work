@@ -1,0 +1,41 @@
+
+body{
+    background: #000;
+    color: #FFAF57;
+    margin: 20px;
+}
+
+h2{
+    margin-left: 10px
+}
+
+.div{
+    margin-top: -10px;
+    width: 400px;
+    background :#fff;
+    color: #000;
+    padding: 5px;
+    border-radius: 0px 0px 10px 10px;
+    background: linear-gradient(to top, #e2dddd, #ffffff);
+    background: linear-gradient(top, #ffffff, #e2dddd);
+}
+
+.div:before{
+    content: '';
+    position: absolute;
+    background: #fff;
+    height: 50px;
+    width: 310px;
+    left: 120px;
+    top: 10px;
+}
+.div:after{ 
+    content: '';
+    position: absolute;
+    display: block;
+    border-right: 30px solid;
+    border-top: 50px solid;
+    border-right-color :#fff;
+    left: 100px;
+    top: 10px;
+}

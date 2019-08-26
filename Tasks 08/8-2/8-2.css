@@ -1,0 +1,66 @@
+.holst{
+    width: 400px;
+    height: 300px;
+    background-color: rgb(27, 27, 163);
+    margin-top: 5px;
+    border: 2px double rgb(0, 7, 70);
+}
+.div_input_mail{
+    margin-left: 20px;
+    width: 85%;
+    margin-top: 10%;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.div_input_password{
+    width: 85%;
+    margin-left: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: light;
+    margin-top: 5%;
+}
+.password{
+    display: inline-block;
+    width: 47%;
+    color: white;
+}
+.password_2{
+    display: inline-block;
+    margin-left: 4%;
+    width: 47%;
+    color: white;
+}
+.password_input{
+    width: 100%;
+}
+.e_mail_input{
+    width: 100%;
+}
+.line{
+    width: 100%;
+    background: white;
+    height: 1px;
+    border-left: 1%;
+    border-right: 1%;
+}
+.button{
+    margin-left: 20px;
+    margin-top: 10%;
+    background: yellow;
+    border: 0;
+    width: 90px;
+    height: 20px;
+}
+.head{
+    font-size: 30px;
+    color: white;
+    width: 20%;
+
+    padding-top: 15px;
+    margin-left: 20px;
+    margin-bottom: 3%;
+}
+.ower_input{
+    margin-bottom: 5px;
+}

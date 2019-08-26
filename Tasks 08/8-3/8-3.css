@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    --color_2: #37ABFF;
+}
+  
+  body {
+    padding: 40px;
+}
+  
+  .file, .edit {
+    display: inline-block;
+    position: relative;
+}
+  
+  .edit { 
+      margin-left: 45px; 
+}
+  
+  .file > a, .edit > a {
+    padding: 5px 10px 5px 10px;
+    color: #0000CC;
+}
+  
+  .file_down a, .edit_down a {
+      text-decoration: none;
+      color: blue;
+}
+  
+  .file_down, .edit_down {
+    position: absolute;
+    padding: 5px;
+    font: normal 15px/35.1px Times;
+    box-shadow: 0 0 7px #000;
+    position: absolute;
+    top: 20px;
+    display: none;
+}
+  
+  .file_down p, .edit_down p {
+    padding: 0 10px 0 5px;
+ }
+  
+  .file:hover > a, .edit:hover > a {
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 7px #000;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+}
+  
+  .file_down > p:hover, .edit_down > p:hover {
+    background-color: #37ABFF;
+}
+  
+  .file_down > p:hover > a, .edit_down > p:hover > a {
+    color: white;
+}
+  
+  .file:hover .file_down, .edit:hover .edit_down {
+    display: block;
+}
+  
+  .file::after, .edit::after {
+    content: '';
+    width: 100%; height: 10px;
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    background-color: white;
+}
+  
+  

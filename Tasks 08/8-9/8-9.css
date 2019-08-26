@@ -1,0 +1,42 @@
+div {
+  margin: 20px;
+}
+
+span {
+  background: linear-gradient(#D6D6D6, #BFBFBF, #D6D6D6);
+  padding: 7px 35px 7px 32px;
+  margin-left: -5px;
+}
+
+label {
+    position: relative;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label:not(:last-child)::before, label:not(:last-child)::after {
+  content: '';
+  z-index: 1;
+  position: absolute;
+  width: 6px;
+  height: 16px;
+  background-color: #fff;
+  left: 101px;
+}
+
+label::after {
+  top: -7px;
+  transform: skew(25deg);
+}
+
+label::before {
+  top: 8px;
+  transform: skew(-25deg);
+}
+
+input:checked + span {
+  background: linear-gradient(#9CDA6F, #67C622, #9CDA6F);
+  color: #fff;
+}

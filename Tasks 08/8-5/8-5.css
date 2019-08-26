@@ -1,0 +1,60 @@
+body {
+    background-color: #4E6379;
+    font-family: sans-serif;
+  }
+  
+  section {
+    width: 600px;
+    margin: 50px auto;
+    display: flex;
+    background: white;
+    border-radius: 5px;
+    padding: 10px 0;
+    box-shadow: 0 30px 50px -10px rgba(0,0,0,.40);
+    height: 150px;
+  }
+  
+  section > div {
+    width: 200px;
+    text-align: center;
+  }
+  
+  .Cloud {
+    border-left: 1px solid rgb(211, 209, 209);
+    border-right: 1px solid rgb(211, 209, 209);
+  }
+
+  
+ section > div > div {
+    display: inline-block;
+    width: 62px;
+    height: 42px;
+    background: url(icons/hosting.png);
+  }
+  
+  .Cloud div {
+    background-position: 0 -42px;
+  
+  }
+  
+  .Dedicated div {
+    background-position: 0 -84px;
+  }
+  
+  h1 {
+    font-size: 16px;
+    color: rgb(241, 97, 48);
+  }
+  
+  p {
+    font-size: 14px;
+  }
+  
+  a {
+    text-decoration: none;
+    display: inline-block;
+    background-color: rgb(241, 97, 48);
+    color: white;
+    padding: 4px 9px;
+    font-size: 14px;
+  }

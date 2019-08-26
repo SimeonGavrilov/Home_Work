@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .div_triangle {
+    text-align: center;
+    position: relative;
+    color: white;
+    background-color: rgb(127, 172, 201);
+    box-shadow: 0 0 0 4px rgb(191, 221, 241);
+    padding: 30px;
+    font-size: 20px;
+  }
+  
+  .div_triangle:before {
+    content: '';
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    box-shadow: -4px -4px rgb(191, 221, 241);
+    background: linear-gradient(-45deg, transparent 50%, rgb(127, 172, 201) 50%);
+    transform: translate(-50%,  -50%) rotate(45deg);
+    top: 3px;
+    left: 50%;
+    
+  }
+  
+  
