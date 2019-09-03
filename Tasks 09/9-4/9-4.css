@@ -1,0 +1,13 @@
+#div1{
+    background-color: rgb(32, 131, 131);
+    color: rgb(255, 255, 255);
+    margin: 25% 10% 20% 50%;
+    width: 100px;
+    font-size: 20px;
+}
+.body{
+    margin: 10% 15% 15% 45%;
+}
+.page_numer{
+    font-size: 20px;
+}
