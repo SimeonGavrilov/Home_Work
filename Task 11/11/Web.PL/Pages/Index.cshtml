@@ -1,0 +1,66 @@
+﻿@using Web.PL.Models;
+
+
+
+
+@{
+    double? num = null;
+    if (IsPost)
+    {
+        num = double.Parse(Request["num"]);
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Pages/Style.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <div>
+                1)Add
+                2)Delete
+                3)Show
+                4)Add award
+                5)Exit
+            </div>
+            <input type="text" name="num" value=@num />
+            <button>Send</button>
+        </form>
+        @{
+            switch (num)
+            {
+                case 1:
+                    Response.Redirect("/pages/Add_User");
+                    break;
+                case 2:
+                    Response.Redirect("/pages/Delete_User");
+                    break;
+                case 3:
+                    <div class="Show_Users">
+                        @{
+                            foreach (var item in StaticPL.Show_Users())
+                            {
+                                <div class="span">@item.ID</div>
+                                <div class="span">@item.Name</div>
+                                <div class="div"><img src="@item.Image" alt="User's Image" class="img"/></div>
+                            }
+                        }
+                    </div>
+                    break;
+                case 4:
+                    Response.Redirect("/pages/AddAward");
+                    break;
+                case 5:
+                    Response.Redirect("/pages/SignOut");
+                    break;
+            }
+        }
+    </div>
+</body>
+</html>

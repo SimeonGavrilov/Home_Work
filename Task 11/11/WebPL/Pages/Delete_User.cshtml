@@ -1,0 +1,28 @@
+﻿@using WebPL;
+@{
+    int ID;
+    if (IsPost)
+    {
+        ID = int.Parse(Request["ID"]);
+        PL_Web_Logic.Delet_User(ID);
+        Response.Redirect("/Pages/Index");
+
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="text" name="ID" />
+            <button>Send</button>
+        </form>
+    </div>
+</body>
+</html>

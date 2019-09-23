@@ -1,0 +1,36 @@
+﻿@using Web.PL.Models;
+@{
+    int user_id, award_id;
+    if (IsPost)
+    {
+        user_id = int.Parse(Request["user_id"]);
+        award_id = int.Parse(Request["award_id"]);
+        StaticPL.AddAward(user_id, award_id);
+        Response.Redirect("/pages/index");
+
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <div>
+                <label for="name">ID of whom give</label>
+                <input type="text" name="user_id" value="">
+            </div>
+            <div>
+                <label for="birth">ID of what give:</label>
+                <input type="text" name="award_id" value="">
+            </div>
+            <button>Send</button>
+        </form>
+    </div>
+</body>
+</html>

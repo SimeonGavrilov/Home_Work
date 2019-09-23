@@ -1,0 +1,48 @@
+﻿@using WebPL;
+
+@{
+    Layout = null;
+}
+
+@{
+    string FalseLogin = null;
+    if (IsPost)
+    {
+        var login = Request["Login"];
+        var password = Request["Password"];
+
+
+        if (Check.CanLogin(login, password))
+        {
+            FormsAuthentication.SetAuthCookie(login, true);
+            Response.Redirect("/Pages/Index");
+            return;
+        }
+        else
+        {
+            FalseLogin = "Invalid login or password";
+        }
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @if (FalseLogin !=null)
+    {
+        <div>@FalseLogin</div>
+    }
+    <div>
+        <form action ="~/Pages/Index.cshtml" method="post">
+            <div>Login <input type="text" name="Login" /></div>
+            <div>Password <input type="text" name="Password" /></div>
+            <button>Send</button>
+        </form>
+    </div>
+</body>
+</html>

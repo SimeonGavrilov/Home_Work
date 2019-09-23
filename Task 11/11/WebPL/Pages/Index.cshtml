@@ -1,0 +1,55 @@
+﻿@using WebPL;
+
+
+
+
+@{
+    double? num = null;
+    if (IsPost)
+    {
+        num = double.Parse(Request["num"]);
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Pages/Style.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="text" name="num" value=@num />
+            <button>Send</button>
+        </form>
+        @{
+    switch (num)
+    {
+        case 1:
+            Response.Redirect("/Pages/Add_User");
+            break;
+        case 2:
+            Response.Redirect("/Pages/Delete_User");
+            break;
+        case 3:
+                    <div class="Show_Users">
+                        @{
+    foreach (var item in PL_Web_Logic.Show_Users())
+    {
+                                <div class="span">@item.ID</div>
+                                <div class="span">@item.Name</div>
+    }
+                        }
+                    </div>
+                break;
+            case 4:
+                Response.Redirect("/Pages/SignOut");
+                break;
+        }
+    } 
+    </div>
+</body>
+</html>
