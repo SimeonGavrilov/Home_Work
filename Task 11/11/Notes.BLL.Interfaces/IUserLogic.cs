@@ -9,11 +9,16 @@ namespace Notes.BLL.Interfaces
 {
     public interface IUserLogic
     {
+        int RoleNow { get; }
+
         int Add(User user);
         void DeleteByID(int ID);
         IEnumerable<User> GetAll();
         User GetByID(int id);
         void AddAward(int user_id, int award_id);
-        //string GetHashPass();
+        bool GetUserByName(string name, string pass);
+        void SwitchRole(int ID, int Role);
+
+        
     }
 }

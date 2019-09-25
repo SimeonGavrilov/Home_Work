@@ -36,25 +36,72 @@
             switch (num)
             {
                 case 1:
-                    Response.Redirect("/pages/Add_User");
+                    if (StaticPL.CheckRole() == 1 | StaticPL.CheckRole() == 2)
+                    {
+                        Response.Redirect("/pages/Add_User");
+                    }
+                    else
+                    {
+                        <div>У вас недостаточно прав на эту функцию.</div>
+                    }
                     break;
                 case 2:
-                    Response.Redirect("/pages/Delete_User");
+                    if (StaticPL.CheckRole() == 1 | StaticPL.CheckRole() == 2)
+                    {
+                        Response.Redirect("/pages/Delete_User");
+                    }
+                    else
+                    {
+                        <div>У вас недостаточно прав на эту функцию.</div>
+                    }
                     break;
                 case 3:
                     <div class="Show_Users">
                         @{
-                            foreach (var item in StaticPL.Show_Users())
+                            int count = -1;
+                            if (StaticPL.CheckRole() == 3)
                             {
-                                <div class="span">@item.ID</div>
-                                <div class="span">@item.Name</div>
-                                <div class="div"><img src="@item.Image" alt="User's Image" class="img"/></div>
+                                foreach (var item in StaticPL.Show_Users())
+                                {
+                                    <div>@item.ID</div>
+                                    <div>@item.Name</div>
+                                    <div>@item.age</div>
+                                }
+                            }
+                            else
+                            {
+
+                                foreach (var item in StaticPL.Show_Users())
+                                {
+                                    if (item.ID != count)
+                                    {
+                                        count = item.ID;
+                                        <div>@item.ID</div>
+                                        <div>@item.Name</div>
+                                        <div>@item.age</div>
+                                        <div>@item.NameA</div>
+                                        <div>@item.DescriptionA</div>
+                                    }
+                                    else
+                                    {
+                                        <div>@item.NameA</div>
+                                        <div>@item.DescriptionA</div>
+                                    }
+                                }
                             }
                         }
                     </div>
                     break;
                 case 4:
-                    Response.Redirect("/pages/AddAward");
+                    
+                    if (StaticPL.CheckRole() == 1 | StaticPL.CheckRole() == 2)
+                    {
+                        Response.Redirect("/pages/AddAward");
+                    }
+                    else
+                    {
+                        <div>У вас недостаточно прав на эту функцию.</div>
+                    }
                     break;
                 case 5:
                     Response.Redirect("/pages/SignOut");

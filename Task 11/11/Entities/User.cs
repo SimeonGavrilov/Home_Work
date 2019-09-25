@@ -8,10 +8,18 @@ namespace Entities
 {
     public class User
     {
+        public enum Roles
+        {
+            Admin = 1,
+            User = 2,
+            Anon = 3
+        }
+        public int Role { get; set; }
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<Awards> Awards { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public string NameA { get; set; }
+        public string DescriptionA { get; set; }
 
         public string Image;
         public string pass { get; set; }
@@ -19,10 +27,6 @@ namespace Entities
         {
             get { return GetAge(DateOfBirth); }
             set { }
-        }
-        public User()
-        {
-            Awards = new List<Awards>();
         }
         private static int GetAge(DateTime birth)
         {

@@ -13,6 +13,8 @@ namespace Notes.DAL.Interfaces
         void DeleteByID(int ID);
         IEnumerable<User> GetAll();
         void AddAward(int user_id, int award_id);
-        //string GetHashPass();
+        int GetUserByName(string name, string pass);
+        int GetRoleByName(string name, string pass);
+        void SwitchRole(int ID, int Role);
     }
 }

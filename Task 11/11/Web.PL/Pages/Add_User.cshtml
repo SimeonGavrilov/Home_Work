@@ -7,8 +7,15 @@
     {
         name = Request["name"];
         birth = DateTime.Parse(Request["birth"]);
-        StaticPL.Add_User(name, birth);
-        Response.Redirect("/Pages/Index");
+        if (StaticPL.Add_User(name, birth) == true)
+        {
+            Response.Redirect("/Pages/Index");
+        }
+        else
+        {
+            <div>У вас недостаточно прав для этой возможности</div>
+        }
+
 
     }
 

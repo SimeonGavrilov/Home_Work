@@ -8,15 +8,21 @@ namespace Web.PL.Models
 {
     public class StaticPL
     {
-        public static void Add_User(string name, DateTime birth)
+        
+        public static bool Add_User(string name, DateTime birth)
         {
             var UsersLogic = DependencyResolver.UserLogic;
-            UsersLogic.Add(new Entities.User()
+            if (CheckRole() == 1)
             {
-                Name = name,
-                DateOfBirth = birth
-            });
+                UsersLogic.Add(new Entities.User()
+                {
+                    Name = name,
+                    DateOfBirth = birth
 
+                });
+                return true;
+            }
+            else return false;
         }
 
         public static IEnumerable<Entities.User> Show_Users()
@@ -33,6 +39,12 @@ namespace Web.PL.Models
         {
             var UsersLogic = DependencyResolver.UserLogic;
             UsersLogic.AddAward(user_id, award_id);
+        }
+
+        public static int CheckRole()
+        {
+            var UsersLogic = DependencyResolver.UserLogic;
+            return UsersLogic.RoleNow;
         }
     }
 }

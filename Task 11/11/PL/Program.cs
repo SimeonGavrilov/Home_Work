@@ -23,7 +23,8 @@ namespace PL
             Console.WriteLine("3) Show all");
             Console.WriteLine("4) Show by ID");
             Console.WriteLine("5) Add award");
-            Console.WriteLine("6) Exit");
+            Console.WriteLine("6)Switch Role of User");
+            Console.WriteLine("7) Exit");
             var input = Console.ReadLine();
             uint num;
             if (uint.TryParse(input, out num)
@@ -44,6 +45,7 @@ namespace PL
                         Console.WriteLine("Add your password");
                         string pass = Console.ReadLine();
                         pass = pass.GetHashCode().ToString();
+                        Console.WriteLine("Link on your image:");
                         string FilePath = Console.ReadLine();
                         //D:\yiff\else\QTSddYUxVRo.jpg
                         UsersLogic.Add(new Entities.User()
@@ -51,7 +53,8 @@ namespace PL
                             Name = name,
                             DateOfBirth = birth,
                             pass = pass,
-                            Image = FilePath
+                            Image = FilePath,
+                            Role = 2
                         }) ;
                         choise();
                         break;
@@ -62,12 +65,17 @@ namespace PL
                         choise();
                         break;
                     case 3:
+                        int pid = -1;
                         foreach (var item in UsersLogic.GetAll())
                         {
-                            Console.WriteLine($"{item.ID} --- {item.Name} --- {item.age}");
-                            foreach (var item1 in item.Awards)
+                            if (item.ID != pid)
                             {
-                                Console.WriteLine($"{item1.NameA} --- {item1.DescriptionA}");
+                                pid = item.ID;
+                                Console.WriteLine($"{item.ID} --- {item.Name} --- {item.age} --- {item.NameA} --- {item.DescriptionA}");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{item.NameA} --- {item.DescriptionA}");
                             }
                         }
                         choise();
@@ -88,6 +96,14 @@ namespace PL
                         choise();
                         break;
                     case 6:
+                        Console.WriteLine("Whom swithc?");
+                        int Sid = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Whic role? (Admin - 1, User - 2)");
+                        int Role = int.Parse(Console.ReadLine());
+                        UsersLogic.SwitchRole(Sid, Role);
+                        choise();
+                        break;
+                    case 7:
                         return;
 
                 }

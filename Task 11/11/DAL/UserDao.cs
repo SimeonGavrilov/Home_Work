@@ -14,7 +14,6 @@ namespace DAL
     {
         private string _connectionString = @"Data Source=DESKTOP-3C735T8\SQLEXPRESS;Initial Catalog=UsersDB;Integrated Security=True";
         private List<User> Users;
-        private List<Awards> Awards;
         public int Add(User user)
         {
             using (var connection = new SqlConnection(_connectionString) )
@@ -64,9 +63,17 @@ namespace DAL
 
                 command.Parameters.Add(new SqlParameter
                 {
-                    ParameterName = "@ImageData",
+                    ParameterName = "@Image",
                     Value = user.Image,
                     SqlDbType = SqlDbType.NVarChar,
+                    Direction = ParameterDirection.Input
+                });
+
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Role",
+                    Value = user.Role,
+                    SqlDbType = SqlDbType.Int,
                     Direction = ParameterDirection.Input
                 });
                 connection.Open();
@@ -119,11 +126,9 @@ namespace DAL
             {
                 var command = connection.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT [id]"
-                                        + ",[Name]"
-                                        + ",[Age]"
-                                        + ",[Image]"
-                                        + " FROM[UsersDB].[dbo].[Users]";
+                command.CommandText = @"select id, Role, name, Age, DateOfBirth, [Award's name],[Award's description], [id_a], image from Users"
+                                        + " left join Users_Award on id = Users_Award.Id_user "
+                                        + " left join Awards on id_a = Users_Award.id_award";
                 connection.Open();
                 var reader = command.ExecuteReader();
 
@@ -136,19 +141,132 @@ namespace DAL
                     //    Name = (string)reader["Name"],
                     //    DateOfBirth = (DateTime)reader["DateOfBirth"],
                     //};
-                    Users.Add(new User()
+                    if (reader["Award's name"].ToString().Length == 0)
                     {
-                        ID = (int)reader["id"],
-                        Name = (string)reader["name"],
-                        age = (int)reader["Age"],
-                        Image = (string)reader["Image"]
-                    }) ;
-
-                    //if id = id_user
-                    //Users.Award = awards
+                        Users.Add(new User()
+                        {
+                            ID = (int)reader["id"],
+                            Name = (string)reader["name"],
+                            DateOfBirth = (DateTime)reader["DateOfBirth"],
+                            age = (int)reader["Age"],
+                            Image = (string)reader["Image"],
+                            Role = (int)reader["Role"],
+                            NameA = null,
+                            DescriptionA = null
+                        });
+                    }
+                    else
+                    {
+                        Users.Add(new User()
+                        {
+                            ID = (int)reader["id"],
+                            Name = (string)reader["name"],
+                            DateOfBirth = (DateTime)reader["DateOfBirth"],
+                            age = (int)reader["Age"],
+                            Image = (string)reader["Image"],
+                            Role = (int)reader["Role"],
+                            NameA = (string)reader["Award's name"],
+                            DescriptionA = (string)reader["Award's description"]
+                        });
+                    }
                 }
             }
             return Users;
+        }
+
+        public int GetUserByName(string name, string pass)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "GetRows";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Name",
+                    Value = name,
+                    SqlDbType = SqlDbType.NVarChar,
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@pass",
+                    Value = pass,
+                    SqlDbType = SqlDbType.NVarChar,
+                    Direction = ParameterDirection.Input
+                });
+                var Rows = new SqlParameter
+                {
+                    ParameterName = "@Rows",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+
+                connection.Open();
+                command.Parameters.Add(Rows);
+                command.ExecuteNonQuery();
+                return (int)Rows.Value;
+            }
+        }
+        public int GetRoleByName(string name, string pass)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "GetRole";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Name",
+                    Value = name,
+                    SqlDbType = SqlDbType.NVarChar,
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@pass",
+                    Value = pass,
+                    SqlDbType = SqlDbType.NVarChar,
+                    Direction = ParameterDirection.Input
+                });
+                var Role = new SqlParameter
+                {
+                    ParameterName = "@Role",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+
+                connection.Open();
+                command.Parameters.Add(Role);
+                command.ExecuteNonQuery();
+                return (int)Role.Value;
+            }
+        }
+
+        public void SwitchRole(int ID, int Role)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "SwitchRole";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Id",
+                    Value = ID,
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Role",
+                    Value = Role,
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         //public List<string> GetHashPass(string Login)
