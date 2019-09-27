@@ -56,41 +56,43 @@
                     }
                     break;
                 case 3:
-                    <div class="Show_Users">
-                        @{
-                            int count = -1;
-                            if (StaticPL.CheckRole() == 3)
-                            {
-                                foreach (var item in StaticPL.Show_Users())
-                                {
-                                    <div>@item.ID</div>
-                                    <div>@item.Name</div>
-                                    <div>@item.age</div>
-                                }
-                            }
-                            else
-                            {
+    <div class="Show_Users">
+        @{
+            int count = -1;
+            if (StaticPL.CheckRole() == 3)
+            {
+                foreach (var item in StaticPL.Show_Users())
+                {
+                    <div>@item.ID</div>
+                    <div>@item.Name</div>
+                    <div>@item.age</div>
+                    <div><img src="@item.Image" /></div>
+                }
+            }
+            else
+            {
 
-                                foreach (var item in StaticPL.Show_Users())
-                                {
-                                    if (item.ID != count)
-                                    {
-                                        count = item.ID;
-                                        <div>@item.ID</div>
-                                        <div>@item.Name</div>
-                                        <div>@item.age</div>
-                                        <div>@item.NameA</div>
-                                        <div>@item.DescriptionA</div>
-                                    }
-                                    else
-                                    {
-                                        <div>@item.NameA</div>
-                                        <div>@item.DescriptionA</div>
-                                    }
-                                }
-                            }
-                        }
-                    </div>
+                foreach (var item in StaticPL.Show_Users())
+                {
+                    if (item.ID != count)
+                    {
+                        count = item.ID;
+                        <div>@item.ID</div>
+                        <div>@item.Name</div>
+                        <div>@item.age</div>
+                        <div>@item.NameA</div>
+                        <div>@item.DescriptionA</div>
+                        <div><img src="@item.Image" alt="User's Image" /></div>
+                    }
+                    else
+                    {
+                        <div>@item.NameA</div>
+                        <div>@item.DescriptionA</div>
+                    }
+                }
+            }
+        }
+    </div>
                     break;
                 case 4:
                     
