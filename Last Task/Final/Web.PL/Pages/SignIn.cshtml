@@ -1,0 +1,51 @@
+﻿@using Web.PL.Models;
+
+@{
+    string errorMessage = null;
+    Logger.InitLogger();
+    if (IsPost)
+    {
+        var username = Request["username"];
+        var pass = Request["pass"];
+
+        if (Auth.CanLogin(username, pass))
+        {
+            FormsAuthentication.SetAuthCookie(username, true);
+            var user = @HttpContext.Current.User.Identity.Name;
+            Response.Redirect("/pages/UserPage.cshtml?user=" + user);
+            Logger.Log.Info("Suscessuful loging by " + username);
+            return;
+        }
+        else
+        {
+            errorMessage = "Invalid login or password";
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="Style.css">
+</head>
+<body>
+    @if (errorMessage != null)
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
+    <div class="wrapper">
+        <form class="form-signin" method="post">
+            <h2 class="form-signin-heading">Please login</h2>
+            <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+            <input type="password" class="form-control" name="pass" placeholder="Password" required="" />
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+            </label>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            <a href="~/Pages/Registration/">Don't have an account?</a>
+        </form>
+    </div>
+</body>
+</html>

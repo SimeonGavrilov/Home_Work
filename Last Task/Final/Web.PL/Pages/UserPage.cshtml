@@ -1,0 +1,15 @@
+@{ 
+    Layout = "~/Pages/Layout.cshtml";
+    var user = Request.QueryString["user"];
+}
+<html lang="ru">
+<head>
+    <link href="~/Pages/Style.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+    <body>
+        <h1 class="custom_h1">Userpage of @user </h1>
+
+    </body>
+</html>

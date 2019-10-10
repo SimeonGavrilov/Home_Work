@@ -1,0 +1,29 @@
+﻿@using Web.PL.Models;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/Pages/Style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div>
+        @foreach (var item in StaticPL.GetAllFavoritsOfArtist())
+        {
+            <div class="one_art">
+                <p><a href="sample.html"><img src="~/Pages/@item.Art_Path" alt="Artist's Art" class="Art"></a></p>
+                <text class="Art_Name">@item.Art_Name</text>
+                <text class="Artist"><a href="user\@item.Art_Artist\@item.Art_Artist">@item.Art_Artist</a></text>
+            </div>
+        }
+    </div>
+</body>
+</html>

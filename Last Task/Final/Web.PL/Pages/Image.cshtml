@@ -1,0 +1,32 @@
+﻿@using Web.PL.Models;
+@{
+    Layout = "~/Pages/Layout.cshtml";
+    //string img = Request.QueryString["recordID"];
+    var img = Request.QueryString["Path"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Pages/Style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div>
+        <img src="@img" class="img-fluid" id="Main_img" />
+        <div class="stats">
+            <div class="raiting">5</div>
+            <form method="post">
+                <button class="like">Like</button>
+            </form>
+            @if (IsPost)
+            {
+                <div>@StaticPL.press_like(1, 1);</div>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

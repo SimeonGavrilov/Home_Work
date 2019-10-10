@@ -1,0 +1,48 @@
+﻿@using Web.PL.Models;
+@{ 
+    Layout = "~/Pages/Layout.cshtml";
+    //string username = @HttpContext.Current.User.Identity.Name;
+    string username = "rica";
+}
+
+
+
+
+@{
+    WebImage photo = null;
+    var newFileName = "";
+    var imagePath = "";
+    string imageFullPath = "";
+    int ID = 0;
+    if (IsPost)
+    {
+        string Art_name = Request["art_name"];
+        photo = WebImage.GetImageFromRequest();
+        if(photo != null)
+        {
+            newFileName = Path.GetExtension(photo.FileName); //Is's working! WOOOOORKIIIING!
+            ID = StaticPL.LastIDofArt() + 1;
+            imagePath = ID.ToString() + newFileName;
+            imageFullPath = @"\Pages\Arts\" + imagePath;
+            photo.Save(@"~\Pages\Arts\" + imagePath);
+        }
+        StaticPL.UploadImg(imageFullPath,Art_name, username, ID);
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Pages/Style.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" class="send_image">
+        <input type="file" name="upload" /><br>
+        <input type="text" name="art_name" value="art's name" />
+
+        <button>Send</button>
+    </form>
+</body>
+</html>

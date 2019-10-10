@@ -1,0 +1,68 @@
+﻿@using Web.PL.Models;
+
+@{
+    string errormessage = null;
+    string username = null;
+    string password = null;
+    string r_password = null;
+    Layout = null;
+    if (IsPost)
+    {
+        username = Request["username"];
+        password = Request["password"];
+        r_password = Request["r_password"];
+        if (StaticPL.password_comparison(password, r_password, username))
+        {
+            StaticPL.CreateNewAcc(username, password);
+            Response.Redirect("~/Pages/SignIn.cshtml");
+        }
+        else
+        {
+            errormessage = "passwords are not comoarisons";
+        }
+
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="Style.css">
+</head>
+<body>
+    @if (errormessage != null)
+    {
+        <div class="alert alert-danger">@errormessage</div>
+    }
+    <form method="post" id="registerForm">
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">User Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputName" placeholder="Name" name="username" required>
+                <span class="error" aria-live="polite"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label" name="password">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
+                <span class="error_p" aria-live="polite"></span>
+            </div>
+            <label for="inputPassword3" class="col-sm-2 col-form-label" name="r_password">Repeat Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="r_inputPassword3" placeholder="Repeat Password" name="r_password">
+                <span class="error_r_p" aria-live="polite"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" id="reg_send">Register</button>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="~/Pages/js.js"></script>
+</html>

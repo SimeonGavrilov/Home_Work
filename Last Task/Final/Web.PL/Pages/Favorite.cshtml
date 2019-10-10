@@ -1,0 +1,31 @@
+﻿@using Web.PL.Models;
+
+@{
+    Layout = "~/Pages/Layout.cshtml";
+    var user = Request.QueryString["user"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/Pages/Style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <h1 class="custom_h1">Favorits of @user</h1>
+    <div>
+        @foreach (var item in StaticPL.GetAllFavoritsOfArtist(user))
+        {
+            <div class="one_art">
+                <p><a href="~/Pages/Image.cshtml?Path=@item.Art_Path"><img src="@item.Art_Path" alt="Artist's Art" class="Art"></a></p>
+                <text class="Art_Name">@item.Art_Name</text>
+                <text class="Artist"><a href="~/Pages/UserPage.cshtml?user=@item.Art_Artist">@item.Art_Artist</a></text>
+            </div>
+        }
+    </div>
+</body>
+</html>
