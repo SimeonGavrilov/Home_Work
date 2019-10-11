@@ -8,6 +8,7 @@ namespace Entities
 {
     public class Art_4_Favorits
     {
+        public int Art_ID;
         public string Art_Name;
         public string Art_Path;
         public string Art_Artist;

@@ -3,6 +3,10 @@
     Layout = "~/Pages/Layout.cshtml";
     //string img = Request.QueryString["recordID"];
     var img = Request.QueryString["Path"];
+    var art_id = int.Parse(Request.QueryString["Art_ID"]);
+    var me = @HttpContext.Current.User.Identity.Name;
+    StaticPL.art = StaticPL.GetArtById(art_id);
+    var user = StaticPL.art.Art_Artist;
 }
 
 <!DOCTYPE html>
@@ -17,13 +21,16 @@
     <div>
         <img src="@img" class="img-fluid" id="Main_img" />
         <div class="stats">
-            <div class="raiting">5</div>
+            <div>Name: @StaticPL.art.Art_Name</div>
+            <div>Raiting: @StaticPL.art.Point</div>
+            <div>Artist: @StaticPL.art.Art_Artist</div>
             <form method="post">
-                <button class="like">Like</button>
+                <button id="like">Like</button>
             </form>
+            
             @if (IsPost)
             {
-                <div>@StaticPL.press_like(1, 1);</div>
+                <div>@StaticPL.press_like(me, art_id);</div>
             }
 
         </div>

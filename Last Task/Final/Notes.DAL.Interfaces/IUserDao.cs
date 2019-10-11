@@ -22,5 +22,10 @@ namespace Notes.DAL.Interfaces
         int LastIDofArt();
 
         void UploadImg(string imageFullPath, string Art_name, string username, int ID);
+        bool Check4Like(int Art_ID, int User_ID);
+        int GetIDByName(string username);
+        Art GetArtById(int Art_ID);
+
+        IEnumerable<Art> Searcher(string Artist_name);
     }
 }

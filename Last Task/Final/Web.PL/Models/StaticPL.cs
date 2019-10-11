@@ -10,7 +10,7 @@ namespace Web.PL.Models
 {
     public class StaticPL
     {
-
+        public static Art art;
         public static IEnumerable<Art> GetAllArtsOfArtist(string Name)
         {
             var UsersLogic = DependencyResolver.UserLogic;
@@ -26,6 +26,11 @@ namespace Web.PL.Models
             });
         }
 
+        public static Art GetArtById(int Art_ID)
+        {
+            var UsersLogic = DependencyResolver.UserLogic;
+            return UsersLogic.GetArtById(Art_ID);
+        }
         public static IEnumerable<Art_4_Favorits> GetAllFavoritsOfArtist(string Name)
         {
             var UsersLogic = DependencyResolver.UserLogic;
@@ -42,10 +47,8 @@ namespace Web.PL.Models
         }
         //public static Art art = new Art();
 
-        public static string press_like(int userID, int artID)
+        public static string press_like(string userID, int artID)
         {
-            userID = 1;
-            artID = 1;
             var UsersLogic = DependencyResolver.UserLogic;
             return UsersLogic.AddBallToArt(userID, artID);
         }
@@ -65,6 +68,11 @@ namespace Web.PL.Models
         {
             var UsersLogic = DependencyResolver.UserLogic;
             UsersLogic.UploadImg(imageFullPath, Art_name, username, ID);
+        }
+        public static IEnumerable<Art> Search(string Artist_name)
+        {
+            var UsersLogic = DependencyResolver.UserLogic;
+            return UsersLogic.Searcher(Artist_name);
         }
     }
 }

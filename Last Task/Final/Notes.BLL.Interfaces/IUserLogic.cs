@@ -16,11 +16,13 @@ namespace Notes.BLL.Interfaces
 
         bool GetUserByName(string username, string pass);
 
-        string AddBallToArt(int userID, int artID);
+        string AddBallToArt(string username, int artID);
 
         IEnumerable<Art> LatestUpdate();
         int LastIDofArt();
 
         void UploadImg(string imageFullPath, string Art_name, string username, int ID);
+        Art GetArtById(int Art_ID);
+        IEnumerable<Art> Searcher(string Artist_name);
     }
 }

@@ -8,9 +8,10 @@ namespace Entities
 {
     public class Art
     {
-        //public int Art_ID;
+        public int Art_ID;
         public string Art_Name;
         public string Art_Path;
         public string Art_Artist;
+        public int Point;
     }
 }

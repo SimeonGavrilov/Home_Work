@@ -4,7 +4,7 @@ var usna = document.getElementById("inputName")
 var butt = document.getElementById("reg_send").disabled = true
 var error = document.querySelector('.error');
 var error_r_p = document.querySelector(".error_r_p")
-
+var signout = document.getElementById("Sign_Out_Button")
 
 var x = new Boolean(false)
 var y = new Boolean(false)
@@ -53,5 +53,7 @@ function look() {
 }
 
 
-
+function exit() {
+    document.location.href ="SignOut.cshtml"
+}
 $.ajax() //переслать на ссылку username get/post

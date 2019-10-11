@@ -108,3 +108,8 @@ input:valid {
 .not_art {
     margin-left:200px;
 }
+
+#Sign_Out_Button {
+    position:absolute;
+    margin-left: 80%;
+}

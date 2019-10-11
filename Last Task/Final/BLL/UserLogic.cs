@@ -57,9 +57,9 @@ namespace BLL
             else return false;
         }
 
-        public string AddBallToArt(int userID, int artID)
+        public string AddBallToArt(string username, int artID)
         {
-            if (_userDao.AddBallToArt(userID, artID))
+            if (_userDao.AddBallToArt(_userDao.GetIDByName(username), artID))
             {
                 return "Успешно";
             }
@@ -82,6 +82,16 @@ namespace BLL
         public void UploadImg(string imageFullPath, string Art_name, string username, int ID)
         {
             _userDao.UploadImg(imageFullPath, Art_name, username, ID);
+        }
+
+        public Art GetArtById(int Art_ID)
+        {
+            return _userDao.GetArtById(Art_ID);
+        }
+
+        public IEnumerable<Art> Searcher(string Artist_name)
+        {
+            return _userDao.Searcher(Artist_name);
         }
     }
 }

@@ -23,7 +23,7 @@
             {
                 {
                     <div class="one_art">
-                        <p><a href="~/Pages/Image.cshtml?Path=@item.Art_Path"><img src="@item.Art_Path" alt="Artist's Art" class="Art"></a></p>
+                        <p><a href="~/Pages/Image.cshtml?Path=@item.Art_Path&Art_ID=@item.Art_ID&Art_Artist=@item.Art_Artist"><img src="@item.Art_Path" alt="Artist's Art" class="Art"></a></p>
                         <text class="Art_Name">@item.Art_Name</text>
                         <text class="Artist"><a href="~/Pages/UserPage.cshtml?user=@item.Art_Artist">@item.Art_Artist</a></text>
                     </div>

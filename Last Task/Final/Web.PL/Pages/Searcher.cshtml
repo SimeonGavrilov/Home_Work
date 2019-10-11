@@ -1,0 +1,35 @@
+﻿@using Web.PL.Models;
+@{
+    var search = "";
+    Layout = "~/Pages/Layout.cshtml";
+    if (IsPost)
+    {
+        search = Request["searcher"];
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post" class="send_image">
+            <input type="text" name="searcher" value="type name of artist" />
+        </form>
+        @{
+            foreach (var item in StaticPL.Search(search))
+            {
+                    <div class="one_art">
+                        <p><a href="~/Pages/Image.cshtml?Path=@item.Art_Path&Art_ID=@item.Art_ID"><img src="@item.Art_Path" alt="Artist's Art" class="Art"></a></p>
+                        <text class="Art_Name">@item.Art_Name</text>
+                        <text class="Artist"><a href="~/Pages/UserPage.cshtml?user=@item.Art_Artist">@item.Art_Artist</a></text>
+                    </div>
+            }
+        }
+    </div>
+</body>
+</html>
